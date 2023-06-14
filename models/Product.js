@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 
-class Article extends Model {
+class Product extends Model {
   static initModel(sequelize) {
-    Article.init(
+    Product.init(
       {
         id: {
           type: DataTypes.BIGINT.UNSIGNED,
@@ -18,12 +18,12 @@ class Article extends Model {
       },
       {
         sequelize,
-        modelName: "article",
+        modelName: "product",
       },
     );
 
-    return Article;
+    return Product;
   }
 }
 
-module.exports = Article;
+module.exports = Product;

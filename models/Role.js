@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 
-class Comment extends Model {
+class Role extends Model {
   static initModel(sequelize) {
-    Comment.init(
+    Role.init(
       {
         content: {
           type: DataTypes.TEXT,
@@ -10,11 +10,11 @@ class Comment extends Model {
       },
       {
         sequelize,
-        modelName: "comment",
+        modelName: "role",
       },
     );
-    return Comment;
+    return Role;
   }
 }
 
-module.exports = Comment;
+module.exports = Role;
