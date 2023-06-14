@@ -29,7 +29,6 @@ class User extends Model {
         address: {
           type: DataTypes.STRING(100),
         },
-        orders: { type: DataTypes.JSON },
       },
       {
         sequelize,

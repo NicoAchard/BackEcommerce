@@ -16,20 +16,6 @@ module.exports = async () => {
       phone_number: faker.phone.number("09#-###-###"),
       address: faker.location.streetAddress(),
       roleId: Math.random() < 0.5 ? 200 : 100,
-
-      orders: [
-        {
-          products: [
-            {
-              name: "Skate",
-              id: 1,
-              quantity: 1,
-              price: 40,
-            },
-          ],
-          status: "Done",
-        },
-      ],
     });
   }
   await User.bulkCreate(users);
