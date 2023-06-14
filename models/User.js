@@ -24,7 +24,7 @@ class User extends Model {
           allowNull: false,
         },
         phone_number: {
-          type: DataTypes.STRING(20),
+          type: DataTypes.STRING(100),
         },
         address: {
           type: DataTypes.STRING(100),
