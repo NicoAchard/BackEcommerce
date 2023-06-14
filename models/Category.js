@@ -1,9 +1,14 @@
 const { Model, DataTypes } = require("sequelize");
 
-class Role extends Model {
+class Category extends Model {
   static initModel(sequelize) {
-    Role.init(
+    Category.init(
       {
+        id: {
+          type: DataTypes.BIGINT.UNSIGNED,
+          primaryKey: true,
+          autoIncrement: true,
+        },
         name: {
           type: DataTypes.STRING(100),
         },
@@ -13,11 +18,12 @@ class Role extends Model {
       },
       {
         sequelize,
-        modelName: "role",
+        modelName: "category",
       },
     );
-    return Role;
+
+    return Category;
   }
 }
 
-module.exports = Role;
+module.exports = Category;

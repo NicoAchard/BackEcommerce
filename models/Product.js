@@ -9,11 +9,26 @@ class Product extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        title: {
-          type: DataTypes.STRING,
+        name: {
+          type: DataTypes.STRING(100),
         },
-        content: {
+        description: {
           type: DataTypes.TEXT,
+        },
+        slug: {
+          type: DataTypes.STRING(200),
+        },
+        highlight: {
+          type: DataTypes.STRING(100),
+        },
+        stock: {
+          type: DataTypes.SMALLINT,
+        },
+        price: {
+          type: DataTypes.DECIMAL,
+        },
+        photo: {
+          type: DataTypes.JSON,
         },
       },
       {

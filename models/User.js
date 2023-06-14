@@ -10,11 +10,26 @@ class User extends Model {
           autoIncrement: true,
         },
         firstname: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(100),
         },
         lastname: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(100),
         },
+        email: {
+          type: DataTypes.STRING(100),
+          allowNull: false,
+        },
+        password: {
+          type: DataTypes.STRING(100),
+          allowNull: false,
+        },
+        phone_number: {
+          type: DataTypes.STRING(20),
+        },
+        address: {
+          type: DataTypes.STRING(100),
+        },
+        orders: { type: DataTypes.JSON },
       },
       {
         sequelize,
