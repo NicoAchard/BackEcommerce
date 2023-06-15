@@ -1,10 +1,24 @@
-const { Article } = require("../models");
+const { Product } = require("../models");
 
 // Display a listing of the resource.
-async function index(req, res) {}
+async function index(req, res) {
+  try {
+    const products = await Product.findAll();
+    return res.json(products);
+  } catch (e) {
+    return console.log(e);
+  }
+}
 
 // Display the specified resource.
-async function show(req, res) {}
+async function show(req, res) {
+  try {
+    const product = await Product.findOne({ where: { slug: req.params.slug } });
+    return res.json(product);
+  } catch (e) {
+    return console.log(e);
+  }
+}
 
 // Show the form for creating a new resource
 async function create(req, res) {}
