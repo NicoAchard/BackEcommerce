@@ -10,7 +10,7 @@ module.exports = async () => {
       highlight: "Ultimate surf-like experience!",
       stock: 10,
       price: 249.99,
-      photo: { url: "path/to/carver-c7-skateboard.jpg" },
+      photo: { url: "carver-c7-skateboard.jpg" },
       categoryId: 2,
     },
     {
@@ -21,7 +21,7 @@ module.exports = async () => {
       highlight: "Precision and control!",
       stock: 5,
       price: 279.99,
-      photo: { url: "path/to/carver-triton-cx.jpg" },
+      photo: { url: "carver-triton-cx.jpg" },
       categoryId: 2,
     },
     {
@@ -32,7 +32,7 @@ module.exports = async () => {
       highlight: "Unleash your freestyle!",
       stock: 15,
       price: 299.99,
-      photo: { url: "path/to/loaded-dervish-sama.jpg" },
+      photo: { url: "loaded-dervish-sama.jpg" },
       categoryId: 3,
     },
     {
@@ -43,7 +43,7 @@ module.exports = async () => {
       highlight: "Eco-friendly and stylish!",
       stock: 20,
       price: 199.99,
-      photo: { url: "path/to/sector-9-bamboo-series.jpg" },
+      photo: { url: "sector-9-bamboo-series.jpg" },
       categoryId: 3,
     },
     {
@@ -54,7 +54,7 @@ module.exports = async () => {
       highlight: "Cruise in style!",
       stock: 8,
       price: 89.99,
-      photo: { url: "path/to/penny-nickel-board.jpg" },
+      photo: { url: "penny-nickel-board.jpg" },
       categoryId: 4,
     },
     {
@@ -65,7 +65,7 @@ module.exports = async () => {
       highlight: "Retro style, modern performance!",
       stock: 12,
       price: 79.99,
-      photo: { url: "path/to/penny-classic-skateboard.jpg" },
+      photo: { url: "penny-classic-skateboard.jpg" },
       categoryId: 4,
     },
     {
@@ -76,7 +76,7 @@ module.exports = async () => {
       highlight: "Iconic design, superior performance!",
       stock: 18,
       price: 119.99,
-      photo: { url: "path/to/santa-cruz-complete-skateboard.jpg" },
+      photo: { url: "santa-cruz-complete-skateboard.jpg" },
       categoryId: 1,
     },
     {
@@ -87,7 +87,7 @@ module.exports = async () => {
       highlight: "Express your style on the streets!",
       stock: 10,
       price: 49.99,
-      photo: { url: "path/to/enjoi-skateboard-deck.jpg" },
+      photo: { url: "enjoi-skateboard-deck.jpg" },
       categoryId: 1,
     },
     {
@@ -98,7 +98,7 @@ module.exports = async () => {
       highlight: "Filipe Toledo signature model!",
       stock: 7,
       price: 329.99,
-      photo: { url: "path/to/smoothstar-holy-toledo.jpg" },
+      photo: { url: "smoothstar-holy-toledo.jpg" },
       categoryId: 1,
     },
     {
@@ -109,7 +109,7 @@ module.exports = async () => {
       highlight: "Embrace the endless summer!",
       stock: 3,
       price: 399.99,
-      photo: { url: "path/to/hamboards-huntington-hop.jpg" },
+      photo: { url: "hamboards-huntington-hop.jpg" },
       categoryId: 3,
     },
     {
@@ -120,7 +120,7 @@ module.exports = async () => {
       highlight: "Master the art of cruising!",
       stock: 9,
       price: 349.99,
-      photo: { url: "path/to/loaded-vanguard-flex-3.jpg" },
+      photo: { url: "loaded-vanguard-flex-3.jpg" },
       categoryId: 3,
     },
     {
@@ -131,7 +131,7 @@ module.exports = async () => {
       highlight: "Conquer any terrain!",
       stock: 15,
       price: 279.99,
-      photo: { url: "path/to/landyachtz-drop-cat-seeker.jpg" },
+      photo: { url: "landyachtz-drop-cat-seeker.jpg" },
       categoryId: 3,
     },
     {
@@ -142,7 +142,7 @@ module.exports = async () => {
       highlight: "Ride with attitude!",
       stock: 6,
       price: 99.99,
-      photo: { url: "path/to/globe-blazer-cruiser.jpg" },
+      photo: { url: "globe-blazer-cruiser.jpg" },
       categoryId: 4,
     },
     {
@@ -153,7 +153,7 @@ module.exports = async () => {
       highlight: "Cruise in style and comfort!",
       stock: 10,
       price: 59.99,
-      photo: { url: "path/to/ridge-retro-mini-cruiser.jpg" },
+      photo: { url: "ridge-retro-mini-cruiser.jpg" },
       categoryId: 1,
     },
     {
@@ -164,7 +164,7 @@ module.exports = async () => {
       highlight: "Unleash your skateboarding skills!",
       stock: 12,
       price: 89.99,
-      photo: { url: "path/to/zero-skateboards-complete.jpg" },
+      photo: { url: "zero-skateboards-complete.jpg" },
       categoryId: 1,
     },
     {
@@ -175,7 +175,7 @@ module.exports = async () => {
       highlight: "Skate in style with Girl!",
       stock: 18,
       price: 54.99,
-      photo: { url: "path/to/girl-skateboards-deck.jpg" },
+      photo: { url: "girl-skateboards-deck.jpg" },
       categoryId: 1,
     },
   ];

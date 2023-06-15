@@ -9,9 +9,9 @@ module.exports = async () => {
     },
 
     {
-      name: "Carver",
+      name: "Cruiser",
       description:
-        "Carvers provides a dynamic and exhilarating riding experience, enabling riders to simulate the sensation of surfing on land.",
+        "Cruiser provides a dynamic and exhilarating riding experience, enabling riders to simulate the sensation of surfing on land.",
     },
 
     {
@@ -21,9 +21,9 @@ module.exports = async () => {
     },
 
     {
-      name: "Penny",
+      name: "Surf Board",
       description:
-        "Penny boards offer a fluid ride due to their soft wheels and are favored by those who enjoy a more laid-back skateboarding experience.",
+        "Surf table are specifically designed for surfers and surfing enthusiasts. It is typically a long and narrow table, resembling the shape of a surfboard.",
     },
   ];
 
