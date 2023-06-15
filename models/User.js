@@ -11,9 +11,11 @@ class User extends Model {
         },
         firstname: {
           type: DataTypes.STRING(100),
+          allowNull: false,
         },
         lastname: {
           type: DataTypes.STRING(100),
+          allowNull: false,
         },
         email: {
           type: DataTypes.STRING(100),

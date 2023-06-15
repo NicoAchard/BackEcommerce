@@ -11,24 +11,31 @@ class Product extends Model {
         },
         name: {
           type: DataTypes.STRING(100),
+          allowNull: false,
         },
         description: {
           type: DataTypes.TEXT,
+          allowNull: false,
         },
         slug: {
           type: DataTypes.STRING(200),
+          unique: true,
+          allowNull: false,
         },
         highlight: {
-          type: DataTypes.STRING(100),
+          type: DataTypes.BOOLEAN,
         },
         stock: {
           type: DataTypes.SMALLINT,
+          allowNull: false,
         },
         price: {
           type: DataTypes.DECIMAL,
+          allowNull: false,
         },
         photo: {
           type: DataTypes.JSON,
+          allowNull: false,
         },
       },
       {
