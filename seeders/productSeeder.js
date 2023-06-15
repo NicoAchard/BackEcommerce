@@ -95,7 +95,7 @@ module.exports = async () => {
       description:
         "Ride like the pros with the Skate Globe G1 Slide Stack. This skateboard is the signature model of professional skateboarder Filipe Toledo. It offers a perfect balance of stability and responsiveness, allowing you to perform tricks with precision.",
       slug: "SKATE-GLOBE-G1-SLIDE-STACK",
-      highlight: "Filipe Toledo signature model!",
+      highlight: false,
       stock: 7,
       price: 329.99,
       photo: { url: "SKATEGLOBEG1SLIDESTACK8125.jpg" },
