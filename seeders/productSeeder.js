@@ -32,7 +32,7 @@ module.exports = async () => {
       highlight: false,
       stock: 15,
       price: 299.99,
-      photos: [{ url: "CRUISERGLOBECHROMANTIC_1.jpg" }],
+      photos: [{ url: "CRUISERGLOBECHROMANTIC_1.jpg" }, { url: "CRUISERGLOBECHROMANTIC_2.jpg" }],
       categoryId: 3,
     },
     {
@@ -54,7 +54,7 @@ module.exports = async () => {
       highlight: false,
       stock: 8,
       price: 89.99,
-      photos: [{ url: "LONGBOARDGLOBEARCADIA.jpg" }],
+      photos: [{ url: "LONGBOARDGLOBEARCADIA.jpg" }, { url: "LONGBOARDGLOBEARCADIA_2.jpg" }],
       categoryId: 4,
     },
     {
@@ -65,7 +65,7 @@ module.exports = async () => {
       highlight: false,
       stock: 12,
       price: 79.99,
-      photos: [{ url: "LONGBOARDGLOBEBYRONBAY.jpg" }],
+      photos: [{ url: "LONGBOARDGLOBEBYRONBAY.jpg" }, { url: "LONGBOARDGLOBEBYRONBAY_2.jpg" }],
       categoryId: 4,
     },
     {
@@ -76,7 +76,10 @@ module.exports = async () => {
       highlight: false,
       stock: 18,
       price: 119.99,
-      photos: [{ url: "LONGBOARDGLOBETHEALLTIME_1.jpg" }],
+      photos: [
+        { url: "LONGBOARDGLOBETHEALLTIME_1.jpg" },
+        { url: "LONGBOARDGLOBETHEALLTIME_2.jpg" },
+      ],
       categoryId: 1,
     },
     {
@@ -87,7 +90,7 @@ module.exports = async () => {
       highlight: false,
       stock: 10,
       price: 49.99,
-      photos: [{ url: "SKATEGLOBEG0BLOCKSERIF.jpg" }],
+      photos: [{ url: "SKATEGLOBEG0BLOCKSERIF.jpg" }, { url: "SKATEGLOBEG0BLOCKSERIF_2.jpg" }],
       categoryId: 1,
     },
     {
@@ -98,39 +101,42 @@ module.exports = async () => {
       highlight: false,
       stock: 7,
       price: 329.99,
-      photos: [{ url: "SKATEGLOBEG1SLIDESTACK8125.jpg" }],
+      photos: [{ url: "SKATEGLOBEG1SLIDESTACK8125.jpg" }, { url: "SKATEGLOBEG1SLIDESTACK80.jpg" }],
       categoryId: 1,
     },
     {
-      name: "SKATE GLOBE G1 STACK 80",
+      name: "SKATE GLOBE G2 HALF DIP ",
       description:
         "Embrace the endless summer with the Skate Globe G1 Stack 80. This skateboard features a classic design and a wide deck, providing stability and control for riders of all skill levels.",
-      slug: "SKATE-GLOBE-G1-STACK-80",
+      slug: "SKATE-GLOBE-G2-HALF-DIP",
       highlight: false,
       stock: 3,
       price: 399.99,
-      photos: [{ url: "SKATEGLOBEG1STACK80.jpg" }],
+      photos: [{ url: "SKATEGLOBEG2HALFDIP2825.jpg" }, { url: "SKATEGLOBEG2HALFDIP2825_2.jpg" }],
       categoryId: 3,
     },
     {
-      name: "SKATE GLOBE G2 HALF DIP 2 8.25",
+      name: "SKATE GLOBE KIDS SAVE THE BEES  ",
       description: `The SkateGlobe G2 Half Dip 28.25 is a high-performance skateboard designed for skaters who want to push their limits and excel in various skateboarding disciplines. With its advanced features and quality construction, this skateboard is built to deliver an exceptional riding experience.`,
       slug: "skateboards-skateglobe-g2-half-dip-2825",
       highlight: false,
       stock: 9,
       price: 349.99,
-      photos: [{ url: "SKATEGLOBEG2HALFDIP2825.jpg" }],
+      photos: [
+        { url: "SKATEGLOBEKIDSSAVETHEBEESMID76.jpg" },
+        { url: "SKATEGLOBEKIDSSAVETHEBEESMID76_2.jpg" },
+      ],
       categoryId: 3,
     },
     {
-      name: "SKATE GLOBE KIDS SAVE THE BEES MID 7.6",
+      name: "SURF TABLE ",
       description:
         "The Landyachtz Drop Cat Seeker longboard features a drop-through design for enhanced stability and control. It's perfect for downhill rides and freeriding.",
       slug: "landyachtz-drop-cat-seeker",
       highlight: false,
       stock: 15,
       price: 279.99,
-      photos: [{ url: "SKATEGLOBEKIDSSAVETHEBEESMID76.jpg" }],
+      photos: [{ url: "surf_1b_2.jpg" }],
       categoryId: 3,
     },
     {
@@ -140,7 +146,10 @@ module.exports = async () => {
       highlight: false,
       stock: 6,
       price: 99.99,
-      photos: [{ url: "TABLASSURFCHANNELISLANDSGSKATE59_1.jpg" }],
+      photos: [
+        { url: "TABLASSURFCHANNELISLANDSGSKATE59_1.jpg" },
+        { url: "TABLASSURFCHANNELISLANDSGSKATE59_2.jpg" },
+      ],
       categoryId: 4,
     },
     {
@@ -161,7 +170,11 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
       highlight: false,
       stock: 12,
       price: 89.99,
-      photos: [{ url: "TABLASSURFQUIKSILVERSOFTBOARDBREAK70_1.jpg" }],
+      photos: [
+        { url: "TABLASSURFQUIKSILVERSOFTBOARDBREAK70_1.jpg" },
+        { url: "TABLASSURFQUIKSILVERSOFTBOARDBREAK70_2.jpg" },
+        { url: "TABLASSURFQUIKSILVERSOFTBOARDBREAK70_3.jpg" },
+      ],
       categoryId: 1,
     },
     {
@@ -171,7 +184,11 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
       highlight: false,
       stock: 18,
       price: 54.99,
-      photos: [{ url: "TABLASSURFSHARPEYEHT25511FCSII_1.jpg" }],
+      photos: [
+        { url: "TABLASSURFSHARPEYEHT25511FCSII_1.jpg" },
+        { url: "TABLASSURFSHARPEYEHT25511FCSII_2.jpg" },
+        { url: "TABLASSURFSHARPEYEHT25511FCSII_2.jpg" },
+      ],
       categoryId: 1,
     },
   ];
