@@ -10,7 +10,7 @@ module.exports = async () => {
       highlight: false,
       stock: 10,
       price: 249.99,
-      photo: { url: "CRUISERGLOBEBIGBLAZER_1.jpg" },
+      photos: [{ url: "CRUISERGLOBEBIGBLAZER_1.jpg" }, { url: "CRUISERGLOBEBIGBLAZER_2.jpg" }],
       categoryId: 2,
     },
     {
@@ -21,7 +21,7 @@ module.exports = async () => {
       highlight: false,
       stock: 5,
       price: 279.99,
-      photo: { url: "CRUISERGLOBEBLAZER_1.jpg" },
+      photos: [{ url: "CRUISERGLOBEBLAZER_1.jpg" }, { url: "CRUISERGLOBEBLAZER_2.jpg" }],
       categoryId: 2,
     },
     {
@@ -32,7 +32,7 @@ module.exports = async () => {
       highlight: false,
       stock: 15,
       price: 299.99,
-      photo: { url: "CRUISERGLOBECHROMANTIC_1.jpg" },
+      photos: [{ url: "CRUISERGLOBECHROMANTIC_1.jpg" }],
       categoryId: 3,
     },
     {
@@ -43,7 +43,7 @@ module.exports = async () => {
       highlight: false,
       stock: 20,
       price: 199.99,
-      photo: { url: "longboard_1.jpg" },
+      photos: [{ url: "longboard_1.jpg" }],
       categoryId: 3,
     },
     {
@@ -54,7 +54,7 @@ module.exports = async () => {
       highlight: false,
       stock: 8,
       price: 89.99,
-      photo: { url: "LONGBOARDGLOBEARCADIA.jpg" },
+      photos: [{ url: "LONGBOARDGLOBEARCADIA.jpg" }],
       categoryId: 4,
     },
     {
@@ -65,7 +65,7 @@ module.exports = async () => {
       highlight: false,
       stock: 12,
       price: 79.99,
-      photo: { url: "LONGBOARDGLOBEBYRONBAY.jpg" },
+      photos: [{ url: "LONGBOARDGLOBEBYRONBAY.jpg" }],
       categoryId: 4,
     },
     {
@@ -76,7 +76,7 @@ module.exports = async () => {
       highlight: false,
       stock: 18,
       price: 119.99,
-      photo: { url: "LONGBOARDGLOBETHEALLTIME_1.jpg" },
+      photos: [{ url: "LONGBOARDGLOBETHEALLTIME_1.jpg" }],
       categoryId: 1,
     },
     {
@@ -87,7 +87,7 @@ module.exports = async () => {
       highlight: false,
       stock: 10,
       price: 49.99,
-      photo: { url: "SKATEGLOBEG0BLOCKSERIF.jpg" },
+      photos: [{ url: "SKATEGLOBEG0BLOCKSERIF.jpg" }],
       categoryId: 1,
     },
     {
@@ -98,7 +98,7 @@ module.exports = async () => {
       highlight: false,
       stock: 7,
       price: 329.99,
-      photo: { url: "SKATEGLOBEG1SLIDESTACK8125.jpg" },
+      photos: [{ url: "SKATEGLOBEG1SLIDESTACK8125.jpg" }],
       categoryId: 1,
     },
     {
@@ -109,7 +109,7 @@ module.exports = async () => {
       highlight: false,
       stock: 3,
       price: 399.99,
-      photo: { url: "SKATEGLOBEG1STACK80.jpg" },
+      photos: [{ url: "SKATEGLOBEG1STACK80.jpg" }],
       categoryId: 3,
     },
     {
@@ -119,7 +119,7 @@ module.exports = async () => {
       highlight: false,
       stock: 9,
       price: 349.99,
-      photo: { url: "SKATEGLOBEG2HALFDIP2825.jpg" },
+      photos: [{ url: "SKATEGLOBEG2HALFDIP2825.jpg" }],
       categoryId: 3,
     },
     {
@@ -130,7 +130,7 @@ module.exports = async () => {
       highlight: false,
       stock: 15,
       price: 279.99,
-      photo: { url: "SKATEGLOBEKIDSSAVETHEBEESMID76.jpg" },
+      photos: [{ url: "SKATEGLOBEKIDSSAVETHEBEESMID76.jpg" }],
       categoryId: 3,
     },
     {
@@ -140,7 +140,7 @@ module.exports = async () => {
       highlight: false,
       stock: 6,
       price: 99.99,
-      photo: { url: "TABLASSURFCHANNELISLANDSGSKATE59_1.jpg" },
+      photos: [{ url: "TABLASSURFCHANNELISLANDSGSKATE59_1.jpg" }],
       categoryId: 4,
     },
     {
@@ -150,7 +150,7 @@ module.exports = async () => {
       highlight: false,
       stock: 10,
       price: 59.99,
-      photo: { url: "TABLASSURFLOSTDRIVER30511_1.jpg" },
+      photos: [{ url: "TABLASSURFLOSTDRIVER30511_1.jpg" }],
       categoryId: 1,
     },
     {
@@ -161,7 +161,7 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
       highlight: false,
       stock: 12,
       price: 89.99,
-      photo: { url: "TABLASSURFQUIKSILVERSOFTBOARDBREAK70_1.jpg" },
+      photos: [{ url: "TABLASSURFQUIKSILVERSOFTBOARDBREAK70_1.jpg" }],
       categoryId: 1,
     },
     {
@@ -171,7 +171,7 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
       highlight: false,
       stock: 18,
       price: 54.99,
-      photo: { url: "TABLASSURFSHARPEYEHT25511FCSII_1.jpg" },
+      photos: [{ url: "TABLASSURFSHARPEYEHT25511FCSII_1.jpg" }],
       categoryId: 1,
     },
   ];

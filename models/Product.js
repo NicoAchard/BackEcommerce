@@ -33,7 +33,7 @@ class Product extends Model {
           type: DataTypes.DECIMAL,
           allowNull: false,
         },
-        photo: {
+        photos: {
           type: DataTypes.JSON,
           allowNull: false,
         },
