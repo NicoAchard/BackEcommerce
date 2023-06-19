@@ -43,6 +43,11 @@ class User extends Model {
   static beforeCreate(user) {
     user.password = hashFunction(user.password);
   }
+  toJSON() {
+    const user = { ...this.get() };
+    delete user.password;
+    return user;
+  }
 }
 
 function hashFunction(password) {

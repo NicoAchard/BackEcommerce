@@ -1,11 +1,11 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
-async function token(req, res) {
+async function tokens(req, res) {
+  console.log(req.body);
   try {
     const user = await User.findOne({
       where: { email: req.body.email },
-      //   attributes: { exclude: ["password"] },
     });
 
     if (!user) {
@@ -20,7 +20,7 @@ async function token(req, res) {
         const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
         return res.json({
           token,
-          user,
+          data: user,
         });
       }
     }
@@ -36,4 +36,4 @@ function logout(req, res) {
   });
 }
 
-module.exports = { token, logout };
+module.exports = { tokens, logout };
