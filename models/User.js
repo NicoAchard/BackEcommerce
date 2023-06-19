@@ -38,11 +38,13 @@ class User extends Model {
         modelName: "user",
       },
     );
+    User.beforeCreate(async (user) => {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      user.password = hashedPassword;
+    });
     return User;
   }
-  static beforeCreate(user) {
-    user.password = hashFunction(user.password);
-  }
+
   toJSON() {
     const user = { ...this.get() };
     delete user.password;
@@ -50,9 +52,10 @@ class User extends Model {
   }
 }
 
-function hashFunction(password) {
-  return bcrypt.hash(password, 4);
-}
+// User.addHook("beforeCreate", async (user) => {
+//   const hashedPassword = await bcrypt.hash(user.password, 10);
+//   user.password = hashedPassword;
+// });
 
 User.prototype.comparePassword = async function (password) {
   console.log(password);

@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const jwt = require("jsonwebtoken");
 
 // Display a listing of the resource.
 async function index(req, res) {}
@@ -10,7 +11,27 @@ async function show(req, res) {}
 async function create(req, res) {}
 
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+  try {
+    //profilePicture
+    const { firstname, lastname, email, password, address, phone_number } = req.body;
+    const user = await User.create({
+      firstname,
+      lastname,
+      email,
+      password,
+      address,
+      phone_number,
+    });
+    const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
+    return res.json({
+      token,
+      data: user,
+    });
+  } catch (error) {
+    return console.log("error");
+  }
+}
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
