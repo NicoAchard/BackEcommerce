@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcryptjs");
 
 class User extends Model {
   static initModel(sequelize) {
@@ -39,6 +40,19 @@ class User extends Model {
     );
     return User;
   }
+  static beforeCreate(user) {
+    user.password = hashFunction(user.password);
+  }
 }
+
+function hashFunction(password) {
+  return bcrypt.hash(password, 4);
+}
+
+User.prototype.comparePassword = async function (password) {
+  console.log(password);
+  console.log(this.password);
+  return await bcrypt.compare(password, this.password);
+};
 
 module.exports = User;
