@@ -2,7 +2,11 @@ const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 
 // Display a listing of the resource.
-async function index(req, res) {}
+async function index(req, res) {
+  const users = await User.findAll();
+  console.log(users);
+  return res.json(users);
+}
 
 // Display the specified resource.
 async function show(req, res) {}
@@ -39,11 +43,10 @@ async function edit(req, res) {}
 // Update the specified resource in storage.
 async function update(req, res) {}
 
-// Remove the specified resource from storage.
-async function destroy(req, res) {}
-
-// Otros handlers...
-// ...
+async function destroy(req, res) {
+  const user = await User.destroy({ where: { id: req.params.id } });
+  return res.json({ response: "The user was deleted successfully" });
+}
 
 module.exports = {
   index,

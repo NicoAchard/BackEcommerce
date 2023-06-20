@@ -32,11 +32,10 @@ async function edit(req, res) {}
 // Update the specified resource in storage.
 async function update(req, res) {}
 
-// Remove the specified resource from storage.
-async function destroy(req, res) {}
-
-// Otros handlers...
-// ...
+async function destroy(req, res) {
+  const product = await Product.destroy({ where: { id: req.params.id } });
+  return res.json({ response: "The product was deleted successfully" });
+}
 
 module.exports = {
   index,

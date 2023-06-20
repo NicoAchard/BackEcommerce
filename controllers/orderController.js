@@ -1,5 +1,10 @@
 const Order = require("../models/Order");
 
+async function index(req, res) {
+  const orders = await Order.findAll();
+
+  return res.json(orders);
+}
 async function store(req, res) {
   try {
     const { products } = req.body;
@@ -15,4 +20,4 @@ async function store(req, res) {
   }
 }
 
-module.exports = { store };
+module.exports = { index, store };
