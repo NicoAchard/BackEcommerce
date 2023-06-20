@@ -6,6 +6,11 @@ const productController = require("../controllers/productController");
 
 router.get("/", productController.index);
 router.get("/:slug", productController.show);
+router.post(
+  "/",
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
+  productController.store,
+);
 router.delete(
   "/:id",
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),

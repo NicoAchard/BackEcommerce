@@ -24,6 +24,7 @@
     "mysql2": "^3.2.4",
     "react-router-dom": "^6.13.0",
     "sequelize": "^6.31.1",
+    "slugify": "^1.6.6",
     "sqlite3": "^5.0.8"
   },
   "description": "Ecommerce: proyecto final integrador"
