@@ -32,6 +32,9 @@ class User extends Model {
         address: {
           type: DataTypes.STRING(100),
         },
+        avatar: {
+          type: DataTypes.STRING(100),
+        },
       },
       {
         sequelize,
