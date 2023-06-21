@@ -26,6 +26,7 @@ async function store(req, res) {
       password,
       address,
       phone_number,
+      roleId: 100,
     });
     const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
     return res.json({

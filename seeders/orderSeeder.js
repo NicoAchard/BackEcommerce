@@ -7,15 +7,15 @@ module.exports = async () => {
         {
           name: "Skate",
           id: 1,
-          quantity: 1,
-          price: 40,
+          qty: 1,
+          unitPrice: 40,
         },
       ],
       status: "sent",
       userId: 1,
     },
     {
-      products: [{ name: "Longboard", id: 2, quantity: 5, price: 200 }],
+      products: [{ name: "Longboard", id: 2, qty: 5, unitPrice: 200 }],
       status: "sent",
       userId: 2,
     },
