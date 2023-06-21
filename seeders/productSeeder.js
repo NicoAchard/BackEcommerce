@@ -7,7 +7,7 @@ module.exports = async () => {
       description:
         "The Cruiser Globe Big Blazer is designed for the ultimate surf-like experience. Its compact size and wide, stable deck make it perfect for carving and cruising with ease.",
       slug: "CRUISER-GLOBE-BIG-BLAZER",
-      highlight: false,
+      highlight: true,
       stock: 10,
       price: 249.99,
       photos: [{ url: "CRUISERGLOBEBIGBLAZER_1.jpg" }, { url: "CRUISERGLOBEBIGBLAZER_2.jpg" }],
@@ -18,7 +18,7 @@ module.exports = async () => {
       description:
         "The Cruiser Globe Blazer is a stylish and compact skateboard designed for cruising and commuting in style. It offers a perfect combination of functionality and aesthetics, making it an ideal choice for urban transportation.",
       slug: "skateboards-cruiser-globe-blazer",
-      highlight: false,
+      highlight: true,
       stock: 5,
       price: 279.99,
       photos: [{ url: "CRUISERGLOBEBLAZER_1.jpg" }, { url: "CRUISERGLOBEBLAZER_2.jpg" }],
@@ -41,7 +41,7 @@ module.exports = async () => {
       description:
         "Cruise in style with the Longboard Globe Arcadia. Its compact size and retro-inspired design make it perfect for commuting and carving through the streets.",
       slug: "LONGBOARD-GLOBE-ARCADIA",
-      highlight: false,
+      highlight: true,
       stock: 8,
       price: 89.99,
       photos: [{ url: "LONGBOARDGLOBEARCADIA.jpg" }, { url: "LONGBOARDGLOBEARCADIA_2.jpg" }],
@@ -77,7 +77,7 @@ module.exports = async () => {
       description:
         "high-performance skateboard designed for speed, precision, and durability. Its sleek design and premium construction ensure optimal control and stability for an exhilarating skateboarding experience.",
       slug: "SKATE-GLOBE-G0-FUBAR",
-      highlight: false,
+      highlight: true,
       stock: 20,
       price: 199.99,
       photos: [{ url: "SKATEGLOBEG0FUBAR.jpg" }, { url: "SKATEGLOBEG0FUBAR_2.jpg" }],
@@ -87,7 +87,7 @@ module.exports = async () => {
       name: "SKATE GLOBE G2 Razo 825",
       description: "High-performance skateboard. Sleek design.",
       slug: "SKATE-GLOBE-G2-Razo-825",
-      highlight: false,
+      highlight: true,
       stock: 20,
       price: 199.99,
       photos: [{ url: "SKATEGLOBEG2Razo825.jpg" }, { url: "SKATEGLOBEG2Razo825_2.jpg" }],
@@ -168,7 +168,7 @@ module.exports = async () => {
       name: "SURF BOARD CHANNEL ISLANDS CIPRO60",
       description: `The Channel Islands surfboard is a high-performance board designed for experienced surfers who seek speed, control, and responsiveness in their rides. It is part of the renowned Lost Surfboards lineup, known for their innovative designs and exceptional performance.`,
       slug: "SURF-BOARD-CHANNEL-ISLANDS-CIPRO60",
-      highlight: false,
+      highlight: true,
       stock: 10,
       price: 59.99,
       photos: [
