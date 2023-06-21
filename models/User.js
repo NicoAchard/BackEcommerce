@@ -32,6 +32,9 @@ class User extends Model {
         address: {
           type: DataTypes.STRING(100),
         },
+        avatar: {
+          type: DataTypes.STRING(100),
+        },
       },
       {
         sequelize,
@@ -58,8 +61,6 @@ class User extends Model {
 // });
 
 User.prototype.comparePassword = async function (password) {
-  console.log(password);
-  console.log(this.password);
   return await bcrypt.compare(password, this.password);
 };
 
