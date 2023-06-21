@@ -61,8 +61,6 @@ class User extends Model {
 // });
 
 User.prototype.comparePassword = async function (password) {
-  console.log(password);
-  console.log(this.password);
   return await bcrypt.compare(password, this.password);
 };
 

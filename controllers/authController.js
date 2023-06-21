@@ -10,9 +10,8 @@ async function tokens(req, res) {
     if (!user) {
       return res.json({ response: "Credenciales inválidas", status: 404 });
     } else {
-      console.log(user);
       const isMatch = await user.comparePassword(req.body.password);
-      console.log(isMatch);
+
       if (!isMatch) {
         return res.json({ response: "Credenciales inválidas", status: 404 });
       } else {
