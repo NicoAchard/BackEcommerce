@@ -2,7 +2,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 async function tokens(req, res) {
-  console.log(req.body);
   try {
     const user = await User.findOne({
       where: { email: req.body.email },
