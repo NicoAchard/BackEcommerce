@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const users = await User.findAll();
+  const users = await User.findAll({ include: "role" });
   console.log(users);
   return res.json(users);
 }
