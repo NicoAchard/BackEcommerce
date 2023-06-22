@@ -20,6 +20,7 @@ class Category extends Model {
       {
         sequelize,
         modelName: "category",
+        paranoid: true,
       },
     );
 

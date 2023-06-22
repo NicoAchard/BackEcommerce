@@ -39,6 +39,7 @@ class User extends Model {
       {
         sequelize,
         modelName: "user",
+        paranoid: true,
       },
     );
     User.beforeCreate(async (user) => {
@@ -54,11 +55,6 @@ class User extends Model {
     return user;
   }
 }
-
-// User.addHook("beforeCreate", async (user) => {
-//   const hashedPassword = await bcrypt.hash(user.password, 10);
-//   user.password = hashedPassword;
-// });
 
 User.prototype.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
