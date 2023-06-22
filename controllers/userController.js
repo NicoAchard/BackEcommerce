@@ -31,7 +31,19 @@ async function store(req, res) {
         return res.status(500).json({ error: "Failed to process form data." });
       }
 
+      const avatar = files.avatar ? files.avatar.newFilename : "prueba.jpg";
       const { firstname, lastname, email, password, address, phone_number } = fields;
+
+      const existingUserFirstname = await User.findOne({
+        where: { firstname: firstname },
+      });
+      const existingUserEmail = await User.findOne({
+        where: { email: email },
+      });
+
+      if (existingUserEmail || existingUserFirstname) {
+        return res.json({ error: "error" });
+      }
       newUser = new User({
         firstname,
         lastname,
@@ -40,7 +52,7 @@ async function store(req, res) {
         address,
         phone_number,
         roleId: 100,
-        avatar: files.avatar.newFilename,
+        avatar,
       });
       const token = jwt.sign({ id: newUser.id }, process.env.TOKEN_SECRET);
       await newUser.save();
@@ -50,7 +62,7 @@ async function store(req, res) {
       });
     });
   } catch (error) {
-    return console.log("error");
+    return console.log(error);
   }
 }
 
