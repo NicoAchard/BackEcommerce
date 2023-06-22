@@ -15,4 +15,10 @@ router.post(
   orderController.store,
 );
 
+router.get(
+  "/lastUserOrder",
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
+  orderController.lastUserOrder,
+);
+
 module.exports = router;
