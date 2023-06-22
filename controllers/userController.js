@@ -73,7 +73,7 @@ async function edit(req, res) {}
 async function update(req, res) {}
 
 async function destroy(req, res) {
-  const user = await User.update({ where: { id: req.params.id } });
+  const user = await User.destroy({ where: { id: req.params.id } });
   return res.json({ response: "The user was deleted successfully" });
 }
 
