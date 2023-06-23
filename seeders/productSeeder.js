@@ -229,7 +229,7 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
       categoryId: 4,
     },
     {
-      name: "SURF BOARD CHANNEL ISLANDS AL MERRICK HAPPY EVERYDAY 511",
+      name: "SURF BOARD CHANNEL ISLANDS AL MERRICK",
       description: "Stoke your ride. Perfect for every day.",
       slug: "TABLA-SURF-CHANNEL-ISLANDS-AL-MERRICK-HAPPY-EVERYDAY-511",
       highlight: false,
