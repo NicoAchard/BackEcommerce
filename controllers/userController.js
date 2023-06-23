@@ -18,7 +18,6 @@ async function create(req, res) {}
 // Store a newly created resource in storage.
 async function store(req, res) {
   try {
-    let newUser = null;
     const form = formidable({
       multiples: true,
       uploadDir: __dirname + "/../public/img",
@@ -26,25 +25,52 @@ async function store(req, res) {
     });
 
     form.parse(req, async (error, fields, files) => {
+      const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      };
       if (error) {
         console.error(error);
-        return res.status(500).json({ error: "Failed to process form data." });
+        // return res.status(500).json({ error: "Failed to process form data." });
+        return res.json({ response: "Something went wrong. Please try again later", status: 400 });
       }
-
       const avatar = files.avatar ? files.avatar.newFilename : "prueba.jpg";
-      const { firstname, lastname, email, password, address, phone_number } = fields;
 
-      const existingUserFirstname = await User.findOne({
-        where: { firstname: firstname },
-      });
+      let { firstname, lastname, email, password, address, phone_number } = fields;
+
+      firstname = firstname === "null" ? null : firstname;
+      lastname = lastname === "null" ? null : lastname;
+      email = email === "null" ? null : email;
+      password = password === "null" ? null : password;
+      address = address === "null" ? null : address;
+      phone_number = phone_number === "null" ? null : phone_number;
+
+      //Check if the user has missed an important field
+      if (
+        !firstname ||
+        !lastname ||
+        !email ||
+        !validateEmail(email) ||
+        !password ||
+        !address ||
+        !phone_number
+      ) {
+        return res.json({ response: "Please enter the requested information.", status: 401 });
+      }
       const existingUserEmail = await User.findOne({
         where: { email: email },
       });
 
-      if (existingUserEmail || existingUserFirstname) {
-        return res.json({ error: "error" });
+      //Check if A user already exists with that email in the system.
+      if (existingUserEmail) {
+        console.log(existingUserEmail);
+        return res.json({
+          response:
+            "A user with that email already exists in the system. Please choose a different email.",
+          status: 402,
+        });
       }
-      newUser = new User({
+      const newUser = new User({
         firstname,
         lastname,
         email,
@@ -59,10 +85,13 @@ async function store(req, res) {
       return res.json({
         token,
         data: newUser,
+        response: "The user was created successfully",
+        status: 200,
       });
     });
   } catch (error) {
-    return console.log(error);
+    console.log(error);
+    return res.json({ response: "Something went wrong. Please try again later", status: 400 });
   }
 }
 

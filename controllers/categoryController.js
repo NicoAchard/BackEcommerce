@@ -15,11 +15,16 @@ async function show(req, res) {}
 async function store(req, res) {
   try {
     const { name, description } = req.body;
-    const category = Category.create({
-      name,
-      description,
-    });
-    return res.json({ response: "The category was created successfully", status: 200 });
+    if (name && description) {
+      await Category.create({
+        name,
+        description,
+      });
+
+      return res.json({ response: "The category was created successfully", status: 200 });
+    } else {
+      return res.json({ response: "Please enter the requested information.", status: 401 });
+    }
   } catch (error) {
     console.log(error);
     return res.json({ response: "Something went wrong. Please try again later", status: 400 });
