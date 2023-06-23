@@ -27,7 +27,6 @@ async function lastUserOrder(req, res) {
       where: { userId: req.auth.id },
       order: [["createdAt", "DESC"]],
     });
-    console.log(lastUserOrder);
     return res.json(lastUserOrder);
   } catch (e) {
     return console.log(e);

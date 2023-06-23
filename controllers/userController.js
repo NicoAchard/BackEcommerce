@@ -63,7 +63,6 @@ async function store(req, res) {
 
       //Check if A user already exists with that email in the system.
       if (existingUserEmail) {
-        console.log(existingUserEmail);
         return res.json({
           response:
             "A user with that email already exists in the system. Please choose a different email.",
