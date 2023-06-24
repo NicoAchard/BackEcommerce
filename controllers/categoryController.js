@@ -3,7 +3,7 @@ const { Category } = require("../models");
 async function index(req, res) {
   try {
     const categories = await Category.findAll();
-    return res.json(categories);
+    return res.json({ status: 200, categories });
   } catch (e) {
     console.log(error);
     return res.json({ response: "Something went wrong. Please try again later", status: 400 });
