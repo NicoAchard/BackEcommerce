@@ -1,5 +1,6 @@
 const { Product } = require("../models");
 const slugify = require("slugify");
+const formidable = require("formidable");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -25,36 +26,50 @@ async function show(req, res) {
 async function create(req, res) {}
 
 async function store(req, res) {
-  const { name, description, stock, price, categoryId, photos, highlight } = req.body;
-
-  let photosDefault = [{ url: "undefined_board.jpg" }, { url: "undefined_board_2.jpg" }];
-
-  if (photos) {
-    photosDefault = [{ url: photos }];
-  } else {
-    photosDefault;
-  }
-
-  const products = await Product.findAll();
-
-  if (products.find((product) => product.slug === slugify(name))) {
-    return res.json({
-      response:
-        "There is already a product with that name in the System. Please change the name of the product",
-      status: 401,
+  try {
+    const form = formidable({
+      multiples: true,
+      uploadDir: __dirname + "/../public/img",
+      keepExtensions: true,
     });
-  } else {
-    const product = await Product.create({
-      name,
-      description,
-      slug: slugify(name),
-      highlight,
-      stock,
-      price,
-      photos: photosDefault,
-      categoryId,
+
+    form.parse(req, async (error, fields, files) => {
+      const { name, description, stock, price, categoryId, highlight } = fields;
+
+      let photosDefault = files.photos
+        ? [{ url: files.photos.newFilename }]
+        : [{ url: "undefined_board.jpg" }, { url: "undefined_board_2.jpg" }];
+
+      // if (photos) {
+      //   photosDefault = [{ url: photos }];
+      // }
+
+      const products = await Product.findAll();
+
+      if (products.find((product) => product.slug === slugify(name))) {
+        return res.json({
+          response:
+            "There is already a product with that name in the System. Please change the name of the product",
+          status: 401,
+        });
+      } else {
+        const product = await Product.create({
+          name,
+          description,
+          slug: slugify(name),
+          highlight,
+          stock,
+          price,
+          photos: photosDefault,
+          categoryId,
+        });
+
+        return res.json({ response: "The product was successfully created", product, status: 200 });
+      }
     });
-    return res.json({ response: "The product was successfully created", product, status: 200 });
+  } catch (error) {
+    console.log(error);
+    return res.json({ response: "An error occurred while creating the product", status: 500 });
   }
 }
 
