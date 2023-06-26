@@ -43,7 +43,9 @@ async function store(req, res) {
         // return res.status(500).json({ error: "Failed to process form data." });
         return res.json({ response: "Something went wrong. Please try again later", status: 400 });
       }
-      const avatar = files.avatar ? files.avatar.newFilename : "prueba.jpg";
+      const avatar = files.avatar
+        ? files.avatar.newFilename
+        : "http://localhost:3000/img/defaultProfile.jpg";
 
       let { firstname, lastname, email, password, address, phone_number } = fields;
 
