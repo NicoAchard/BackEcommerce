@@ -35,20 +35,7 @@ module.exports = async () => {
       photos: [{ url: "CRUISERGLOBECHROMANTIC_1.jpg" }, { url: "CRUISERGLOBECHROMANTIC_2.jpg" }],
       categoryId: 2,
     },
-    {
-      name: "CRUISER GLOBE BIG BLAZER WOOD",
-      description:
-        "Unleash your freestyle skills with the Cruiser Globe big blazer. This versatile cruiser board features a symmetrical shape and responsive trucks for optimal trick performance.",
-      slug: "CRUISER-GLOBE-BIG-BLAZER-WOOD",
-      highlight: false,
-      stock: 15,
-      price: 299.99,
-      photos: [
-        { url: "CRUISERGLOBEBIGBLAZERWOOD_2.jpg" },
-        { url: "CRUISERGLOBEBIGBLAZERWOOD.jpg" },
-      ],
-      categoryId: 2,
-    },
+
     {
       name: "CRUISER GLOBE BLAZER BLUE",
       description:
