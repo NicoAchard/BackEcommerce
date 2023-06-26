@@ -36,9 +36,17 @@ async function store(req, res) {
     form.parse(req, async (error, fields, files) => {
       const { name, description, stock, price, categoryId, highlight } = fields;
 
-      let photosDefault = files.photos
-        ? [{ url: files.photos.newFilename }]
-        : [{ url: "undefined_board.jpg" }, { url: "undefined_board_2.jpg" }];
+      let photosDefault = [];
+
+      if (Array.isArray(files.photos)) {
+        files.photos.forEach((file) => {
+          photosDefault.push({ url: file.newFilename });
+        });
+      } else if (files.photos) {
+        photosDefault.push({ url: files.photos.newFilename });
+      } else {
+        photosDefault.push({ url: "undefined_board.jpg" }, { url: "undefined_board_2.jpg" });
+      }
 
       // if (photos) {
       //   photosDefault = [{ url: photos }];
