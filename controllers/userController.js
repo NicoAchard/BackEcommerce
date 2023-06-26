@@ -10,7 +10,16 @@ async function index(req, res) {
 }
 
 // Display the specified resource.
-async function show(req, res) {}
+async function show(req, res) {
+  const { id } = req.params;
+  console.log(id);
+  const user = await User.findByPk(id);
+  if (user) {
+    return res.json({ response: "User found", status: 200, user });
+  } else {
+    return res.json({ response: "User notfound", status: 400 });
+  }
+}
 
 // Show the form for creating a new resource
 async function create(req, res) {}

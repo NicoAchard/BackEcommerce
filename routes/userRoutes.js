@@ -9,6 +9,16 @@ router.get(
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
   userController.index,
 );
+router.get(
+  "/:id",
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
+  userController.show,
+);
+router.patch(
+  "/:id",
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
+  userController.update,
+);
 router.delete(
   "/:id",
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
