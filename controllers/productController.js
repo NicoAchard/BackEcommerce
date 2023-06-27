@@ -48,10 +48,6 @@ async function store(req, res) {
         photosDefault.push({ url: "undefined_board.jpg" }, { url: "undefined_board_2.jpg" });
       }
 
-      // if (photos) {
-      //   photosDefault = [{ url: photos }];
-      // }
-
       const products = await Product.findAll();
 
       if (products.find((product) => product.slug === slugify(name))) {
@@ -85,7 +81,55 @@ async function store(req, res) {
 async function edit(req, res) {}
 
 // Update the specified resource in storage.
-async function update(req, res) {}
+async function update(req, res) {
+  try {
+    const form = formidable({
+      multiples: true,
+      uploadDir: __dirname + "/../public/img",
+      keepExtensions: true,
+    });
+
+    form.parse(req, async (error, fields, files) => {
+      const { name, description, stock, price, categoryId, highlight } = fields;
+      const id = req.params.id;
+
+      let photosDefault = [];
+
+      if (Array.isArray(files.photos)) {
+        files.photos.forEach((file) => {
+          photosDefault.push({ url: file.newFilename });
+        });
+      } else if (files.photos) {
+        photosDefault.push({ url: files.photos.newFilename });
+      }
+
+      const product = await Product.findByPk(id);
+
+      if (!product) {
+        return res.json({ response: "Product not found", status: 404 });
+      }
+
+      const updatedProduct = await product.update({
+        name,
+        description,
+        highlight,
+        stock,
+        price,
+        photos: photosDefault,
+        categoryId,
+      });
+
+      return res.json({
+        response: "The product was updated successfully",
+        product: updatedProduct,
+        status: 200,
+      });
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({ response: "An error occurred while updating the product", status: 500 });
+  }
+}
 
 async function destroy(req, res) {
   const product = await Product.destroy({ where: { id: req.params.id } });
