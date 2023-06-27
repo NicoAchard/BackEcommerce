@@ -1,4 +1,3 @@
-const { where } = require("sequelize");
 const { Category } = require("../models");
 
 async function index(req, res) {
@@ -17,12 +16,16 @@ async function store(req, res) {
   try {
     const { name, description } = req.body;
     if (name && description) {
-      await Category.create({
+      const category = await Category.create({
         name,
         description,
       });
 
-      return res.json({ response: "The category was created successfully", status: 200 });
+      return res.json({
+        response: "The category was created successfully",
+        status: 200,
+        value: category,
+      });
     } else {
       return res.json({ response: "Please enter the requested information.", status: 401 });
     }
@@ -33,14 +36,25 @@ async function store(req, res) {
 }
 
 async function update(req, res) {
-  const { name, description } = req.body;
-  const id = req.params.id;
+  try {
+    const { name, description } = req.body;
+    const id = req.params.id === "undefined" ? null : req.params.id;
 
-  const category = await Category.update({ name, description }, { where: { id: id } });
-  if (category) {
-    return res.json({ response: "The category was updated successfully", status: 200 });
-  } else {
-    return res.json({ response: "Something went wrong. Please try again later", status: 400 });
+    if ((name, description) && id) {
+      const category = await Category.update({ name, description }, { where: { id } });
+      if (category) {
+        return res.json({ response: "The category was updated successfully", status: 200 });
+      }
+    } else {
+      return res.json({ response: "Please enter the requested information.", status: 401 });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      response: "Something went wrong. Please try again later",
+      status: 400,
+      error,
+    });
   }
 }
 
