@@ -15,6 +15,11 @@ router.post(
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
   categoryController.store,
 );
+router.patch(
+  "/:id",
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
+  categoryController.update,
+);
 router.delete(
   "/:id",
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),

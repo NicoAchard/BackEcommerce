@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const { Category } = require("../models");
 
 async function index(req, res) {
@@ -31,7 +32,17 @@ async function store(req, res) {
   }
 }
 
-async function update(req, res) {}
+async function update(req, res) {
+  const { name, description } = req.body;
+  const id = req.params.id;
+
+  const category = await Category.update({ name, description }, { where: { id: id } });
+  if (category) {
+    return res.json({ response: "The category was updated successfully", status: 200 });
+  } else {
+    return res.json({ response: "Something went wrong. Please try again later", status: 400 });
+  }
+}
 
 async function destroy(req, res) {
   try {
