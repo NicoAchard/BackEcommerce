@@ -105,11 +105,76 @@ async function store(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const form = formidable({
+      multiples: true,
+      uploadDir: __dirname + "/../public/img",
+      keepExtensions: true,
+    });
+
+    form.parse(req, async (error, fields, files) => {
+      const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      };
+      if (error) {
+        console.error(error);
+        return res.json({ response: "Something went wrong. Please try again later", status: 400 });
+      }
+
+      const userId = req.user.id;
+
+      let { firstname, lastname, email, password, address, phone } = fields;
+
+      firstname = firstname === "null" ? null : firstname;
+      lastname = lastname === "null" ? null : lastname;
+      email = email === "null" ? null : email;
+      password = password === "null" ? null : password;
+      address = address === "null" ? null : address;
+      phone = phone === "null" ? null : phone;
+
+      if (
+        !firstname ||
+        !lastname ||
+        !email ||
+        !validateEmail(email) ||
+        !password ||
+        !address ||
+        !phone
+      ) {
+        return res.json({ response: "Please enter the requested information.", status: 401 });
+      }
+
+      const user = await User.findOne({ where: { id: userId } });
+      if (!user) {
+        return res.json({ response: "User not found.", status: 404 });
+      }
+
+      user.firstname = firstname;
+      user.lastname = lastname;
+      user.email = email;
+      user.password = password;
+      user.address = address;
+      user.phone_number = phone;
+
+      if (files.avatar) {
+        const avatar = files.avatar.newFilename;
+        user.avatar = avatar;
+      }
+
+      await user.save();
+
+      return res.json({ response: "User updated successfully", status: 200 });
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({ response: "Something went wrong. Please try again later", status: 400 });
+  }
+}
+
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
-
-// Update the specified resource in storage.
-async function update(req, res) {}
 
 async function destroy(req, res) {
   const user = await User.destroy({ where: { id: req.params.id } });
