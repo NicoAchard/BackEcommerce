@@ -123,16 +123,16 @@ async function update(req, res) {
         return res.json({ response: "Something went wrong. Please try again later", status: 400 });
       }
 
-      const userId = req.user.id;
+      const userId = req.params.id;
 
-      let { firstname, lastname, email, password, address, phone } = fields;
+      let { firstname, lastname, email, password, address, phone_number } = fields;
 
       firstname = firstname === "null" ? null : firstname;
       lastname = lastname === "null" ? null : lastname;
       email = email === "null" ? null : email;
       password = password === "null" ? null : password;
       address = address === "null" ? null : address;
-      phone = phone === "null" ? null : phone;
+      phone_number = phone_number === "null" ? null : phone_number;
 
       if (
         !firstname ||
@@ -141,7 +141,7 @@ async function update(req, res) {
         !validateEmail(email) ||
         !password ||
         !address ||
-        !phone
+        !phone_number
       ) {
         return res.json({ response: "Please enter the requested information.", status: 401 });
       }
@@ -156,7 +156,7 @@ async function update(req, res) {
       user.email = email;
       user.password = password;
       user.address = address;
-      user.phone_number = phone;
+      user.phone_number = phone_number;
 
       if (files.avatar) {
         const avatar = files.avatar.newFilename;
@@ -165,7 +165,7 @@ async function update(req, res) {
 
       await user.save();
 
-      return res.json({ response: "User updated successfully", status: 200 });
+      return res.json({ response: "User updated successfully", status: 200, user });
     });
   } catch (error) {
     console.log(error);
