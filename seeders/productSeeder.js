@@ -244,7 +244,7 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
     },
     {
       name: "SOFTECH SURF BOAR MASON TWIN",
-      description: ``,
+      description: `Embrace the spirit of retro surfing with the Softech Surf Board Mason Twin, featuring a classic twin fin setup for a unique blend of speed, control, and timeless style.`,
       slug: "SOFTECH-SURF-BOAR-MASON-TWIN",
       highlight: false,
       stock: 18,
@@ -257,7 +257,7 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
     },
     {
       name: "SOFTECH SURF BOARD ROLLER",
-      description: ``,
+      description: `Experience the thrill of effortless gliding on the waves with the Softech Surf Board Roller, designed for speed and maneuverability, perfect for intermediate to advanced surfers.`,
       slug: "SOFTECH-SURF-BOARD-ROLLER-66",
       highlight: false,
       stock: 18,
@@ -270,7 +270,7 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
     },
     {
       name: "SOFTECH SURF BOARD HANDSHAPED ",
-      description: ``,
+      description: `A meticulously crafted surfboard that combines traditional shaping techniques with modern materials, delivering a smooth and responsive ride for avid wave enthusiasts.`,
       slug: "SOFTECH-SURF-BOARD-HANDSHAPED",
       highlight: false,
       stock: 18,
@@ -283,7 +283,7 @@ This softboard features a length of 7.0 feet, providing ample buoyancy and ease 
     },
     {
       name: "QUIKSILVER SOFT BOARD DISCUS",
-      description: ``,
+      description: `A versatile and durable soft board designed for all skill levels, offering exceptional performance and stability for fun-filled surfing experiences.`,
       slug: "QUIKSILVER-SOFT-BOARD-DISCUS",
       highlight: false,
       stock: 18,
