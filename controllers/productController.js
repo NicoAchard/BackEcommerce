@@ -95,30 +95,31 @@ async function update(req, res) {
       const { name, description, stock, price, categoryId, highlight } = fields;
       const id = req.params.id;
 
-      let photos = [];
-
       const product = await Product.findByPk(id);
+
+      let photos = [];
+      for (const photo of product.photos) {
+        photos.push(photo);
+      }
 
       if (!product) {
         return res.json({ response: "Product not found", status: 404 });
       }
-      console.log(files);
+
       if (files.photos) {
-        for (const photo of files.photos) {
-          const ext = path.extname(photo.filepath);
-          const newFileName = `image_${Date.now()}${ext}`;
+        const ext = path.extname(files.photos.filepath);
+        const newFileName = `image_${Date.now()}${ext}`;
 
-          const { data, err } = await supabase.storage
-            .from("img")
-            .upload(newFileName, fs.createReadStream(photo.filepath), {
-              cacheControl: "3600",
-              upsert: false,
-              contentType: photo.mimetype,
-              duplex: "half",
-            });
+        const { data, err } = await supabase.storage
+          .from("img")
+          .upload(newFileName, fs.createReadStream(files.photos.filepath), {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: files.photos.mimetype,
+            duplex: "half",
+          });
 
-          photos.push({ url: newFileName });
-        }
+        photos.push({ url: newFileName });
       }
 
       const updatedProduct = await product.update({
