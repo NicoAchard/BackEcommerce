@@ -102,7 +102,7 @@ async function update(req, res) {
       if (!product) {
         return res.json({ response: "Product not found", status: 404 });
       }
-      console.log(files.photos);
+      console.log(files);
       if (files.photos) {
         for (const photo of files.photos) {
           const ext = path.extname(photo.filepath);
