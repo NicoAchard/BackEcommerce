@@ -149,7 +149,7 @@ async function update(req, res) {
       if (files.avatar) {
         const ext = path.extname(files.avatar.filepath);
         const newFileName = `image_${Date.now()}${ext}`;
-        console.log(newFileName);
+
         const { data, err } = await supabase.storage
           .from("img")
           .upload(newFileName, fs.createReadStream(files.avatar.filepath), {

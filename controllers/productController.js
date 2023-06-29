@@ -1,6 +1,9 @@
 const { Product } = require("../models");
 const slugify = require("slugify");
 const formidable = require("formidable");
+const supabase = require("../config/configSupabase");
+const fs = require("fs");
+const path = require("path");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -85,7 +88,6 @@ async function update(req, res) {
   try {
     const form = formidable({
       multiples: true,
-      uploadDir: __dirname + "/../public/img",
       keepExtensions: true,
     });
 
@@ -93,20 +95,30 @@ async function update(req, res) {
       const { name, description, stock, price, categoryId, highlight } = fields;
       const id = req.params.id;
 
-      let photosDefault = [];
-
-      if (Array.isArray(files.photos)) {
-        files.photos.forEach((file) => {
-          photosDefault.push({ url: file.newFilename });
-        });
-      } else if (files.photos) {
-        photosDefault.push({ url: files.photos.newFilename });
-      }
+      let photos = [];
 
       const product = await Product.findByPk(id);
 
       if (!product) {
         return res.json({ response: "Product not found", status: 404 });
+      }
+      console.log(files.photos);
+      if (files.photos) {
+        for (const photo of files.photos) {
+          const ext = path.extname(photo.filepath);
+          const newFileName = `image_${Date.now()}${ext}`;
+
+          const { data, err } = await supabase.storage
+            .from("img")
+            .upload(newFileName, fs.createReadStream(photo.filepath), {
+              cacheControl: "3600",
+              upsert: false,
+              contentType: photo.mimetype,
+              duplex: "half",
+            });
+
+          photos.push({ url: newFileName });
+        }
       }
 
       const updatedProduct = await product.update({
@@ -115,7 +127,7 @@ async function update(req, res) {
         highlight,
         stock,
         price,
-        photos: photosDefault,
+        photos,
         categoryId,
       });
 
