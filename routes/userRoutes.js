@@ -29,6 +29,13 @@ router.delete(
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
   userController.destroy,
 );
+
+router.delete(
+  "/img/:profileImg",
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
+  userController.destroyAvatar,
+);
+
 router.post("/", userController.store);
 
 module.exports = router;

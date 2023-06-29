@@ -178,6 +178,7 @@ async function destroy(req, res) {
   const user = await User.destroy({ where: { id: req.params.id } });
   return res.json({ response: "The user was deleted successfully" });
 }
+
 async function confirmPassword(req, res) {
   try {
     const user = await User.findByPk(req.auth.id);
@@ -202,6 +203,25 @@ async function confirmPassword(req, res) {
     });
   }
 }
+
+async function destroyAvatar(req, res) {
+  try {
+    const user = await User.findOne({ where: { avatar: req.params.profileImg } });
+
+    user.avatar = null;
+    user.avatar = "defaultProfile.jpg";
+    await user.save();
+    return res.json({ response: "The avatar was deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      message: "Something went wrong. Please try again later!!",
+      error,
+      status: 400,
+    });
+  }
+}
+
 module.exports = {
   index,
   show,
@@ -210,4 +230,5 @@ module.exports = {
   update,
   destroy,
   confirmPassword,
+  destroyAvatar,
 };
