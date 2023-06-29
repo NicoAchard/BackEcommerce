@@ -29,7 +29,6 @@ module.exports = async () => {
 
     const randomIndex = Math.floor(Math.random() * Avatars.length);
     const avatar = Avatars[randomIndex];
-
     users.push({
       firstname: firstname,
       lastname: lastname,
@@ -41,6 +40,27 @@ module.exports = async () => {
       avatar: avatar,
     });
   }
+  users.push({
+    firstname: "Maria",
+    lastname: "Perez",
+    email: "maria.perez@gmail.com",
+    password: encryptedPassword,
+    phone_number: faker.phone.number("09#-###-###"),
+    address: faker.location.streetAddress(),
+    roleId: 100,
+    avatar: "image_36OXym-C_1687999352964_raw.jpg",
+  });
+
+  users.push({
+    firstname: "Admin",
+    lastname: "Admin",
+    email: "admin@gmail.com",
+    password: encryptedPassword,
+    phone_number: faker.phone.number("09#-###-###"),
+    address: faker.location.streetAddress(),
+    roleId: 200,
+    avatar: "image_aN61hZl5_1687999261665_raw.jpg",
+  });
   await User.bulkCreate(users);
   console.log("[Database] Se corrió el seeder de User.");
 };
