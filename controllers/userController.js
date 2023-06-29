@@ -128,15 +128,7 @@ async function update(req, res) {
       address = address === "null" ? null : address;
       phone_number = phone_number === "null" ? null : phone_number;
 
-      if (
-        !firstname ||
-        !lastname ||
-        !email ||
-        !validateEmail(email) ||
-        !password ||
-        !address ||
-        !phone_number
-      ) {
+      if (!firstname || !lastname || !email || !validateEmail(email) || !address || !phone_number) {
         return res.json({ response: "Please enter the requested information.", status: 401 });
       }
 
@@ -166,10 +158,10 @@ async function update(req, res) {
       user.firstname = firstname;
       user.lastname = lastname;
       user.email = email;
-      user.password = password;
+      user.password = password ? password : user.password;
       user.address = address;
       user.phone_number = phone_number;
-
+      console.log(user.password);
       await user.save();
 
       return res.json({ response: "User updated successfully", status: 200, user });
@@ -186,7 +178,30 @@ async function destroy(req, res) {
   const user = await User.destroy({ where: { id: req.params.id } });
   return res.json({ response: "The user was deleted successfully" });
 }
-
+async function confirmPassword(req, res) {
+  try {
+    const user = await User.findByPk(req.auth.id);
+    const isMatch = await user.comparePassword(req.body.password);
+    console.log(isMatch);
+    if (!isMatch) {
+      return res.json({
+        message: "Passwords do not match",
+        status: 401,
+      });
+    }
+    return res.json({
+      message: "Passwords match",
+      status: 200,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      message: "Something went wrong. Please try again later!!",
+      status: 400,
+      error,
+    });
+  }
+}
 module.exports = {
   index,
   show,
@@ -194,4 +209,5 @@ module.exports = {
   edit,
   update,
   destroy,
+  confirmPassword,
 };

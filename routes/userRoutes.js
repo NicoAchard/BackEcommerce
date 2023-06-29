@@ -9,6 +9,11 @@ router.get(
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
   userController.index,
 );
+router.post(
+  "/confirm-password",
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
+  userController.confirmPassword,
+);
 router.get(
   "/:id",
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
