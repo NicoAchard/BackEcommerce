@@ -16,6 +16,13 @@ router.patch(
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
   productController.update,
 );
+
+router.put(
+  "/img/:id",
+  checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),
+  productController.destroyImg,
+);
+
 router.delete(
   "/:id",
   checkJwt({ secret: process.env.TOKEN_SECRET, algorithms: ["HS256"] }),

@@ -144,6 +144,15 @@ async function update(req, res) {
   }
 }
 
+async function destroyImg(req, res) {
+  const id = req.params.id;
+  const product = await Product.findByPk(id);
+  console.log(product);
+  product.photos = product.photos.splice(req.body.index, 1);
+  await product.save();
+  return res.json({ response: "The product was deleted successfully" });
+}
+
 async function destroy(req, res) {
   const product = await Product.destroy({ where: { id: req.params.id } });
   return res.json({ response: "The product was deleted successfully" });
@@ -157,4 +166,5 @@ module.exports = {
   edit,
   update,
   destroy,
+  destroyImg,
 };
