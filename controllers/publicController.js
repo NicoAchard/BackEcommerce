@@ -29,10 +29,10 @@ async function tokens(req, res) {
   }
 }
 
-function logout(req, res) {
-  req.session.destroy(() => {
-    res.redirect("/");
-  });
+async function resetDatabase(req, res) {
+  delete require.cache[require.resolve("../seeders/runAllSeeders")];
+  require("../seeders/runAllSeeders");
+  return res.json("OK");
 }
 
-module.exports = { tokens, logout };
+module.exports = { tokens, resetDatabase };
