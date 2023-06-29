@@ -187,6 +187,15 @@ async function destroy(req, res) {
   return res.json({ response: "The user was deleted successfully" });
 }
 
+async function destroyAvatar(req, res) {
+  const user = await User.findOne({ where: { avatar: req.params.profileImg } });
+
+  user.avatar = null;
+  user.avatar = "defaultProfile.jpg";
+  await user.save();
+  return res.json({ response: "The avatar was deleted successfully" });
+}
+
 module.exports = {
   index,
   show,
@@ -194,4 +203,5 @@ module.exports = {
   edit,
   update,
   destroy,
+  destroyAvatar,
 };
