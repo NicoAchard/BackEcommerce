@@ -1,15 +1,17 @@
+const supabase = require("../config/configSupabase");
 const { User } = require("../models");
-const jwt = require("jsonwebtoken");
-const formidable = require("formidable");
 
-// Display a listing of the resource.
+const formidable = require("formidable");
+const jwt = require("jsonwebtoken");
+const path = require("path");
+const fs = require("fs");
+
 async function index(req, res) {
   const users = await User.findAll({ include: "role" });
 
   return res.json(users);
 }
 
-// Display the specified resource.
 async function show(req, res) {
   const { id } = req.params;
   console.log(id);
@@ -20,9 +22,6 @@ async function show(req, res) {
     return res.json({ response: "User notfound", status: 400 });
   }
 }
-
-// Show the form for creating a new resource
-async function create(req, res) {}
 
 // Store a newly created resource in storage.
 async function store(req, res) {
@@ -109,7 +108,6 @@ async function update(req, res) {
   try {
     const form = formidable({
       multiples: true,
-      uploadDir: __dirname + "/../public/img",
       keepExtensions: true,
     });
 
@@ -118,12 +116,8 @@ async function update(req, res) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
       };
-      if (error) {
-        console.error(error);
-        return res.json({ response: "Something went wrong. Please try again later", status: 400 });
-      }
-
-      const userId = req.params.id;
+      error &&
+        res.json({ response: "Something went wrong. Please try again later", status: 400, error });
 
       let { firstname, lastname, email, password, address, phone_number } = fields;
 
@@ -146,9 +140,27 @@ async function update(req, res) {
         return res.json({ response: "Please enter the requested information.", status: 401 });
       }
 
-      const user = await User.findOne({ where: { id: userId } });
+      const user = await User.findOne({ where: { id: req.params.id } });
+
       if (!user) {
         return res.json({ response: "User not found.", status: 404 });
+      }
+
+      if (files.avatar) {
+        const ext = path.extname(files.avatar.filepath);
+        const newFileName = `image_${Date.now()}${ext}`;
+        console.log(newFileName);
+        const { data, err } = await supabase.storage
+          .from("img")
+          .upload(newFileName, fs.createReadStream(files.avatar.filepath), {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: files.avatar.mimetype,
+            duplex: "half",
+          });
+
+        const avatar = newFileName;
+        user.avatar = avatar;
       }
 
       user.firstname = firstname;
@@ -157,11 +169,6 @@ async function update(req, res) {
       user.password = password;
       user.address = address;
       user.phone_number = phone_number;
-
-      if (files.avatar) {
-        const avatar = files.avatar.newFilename;
-        user.avatar = avatar;
-      }
 
       await user.save();
 
@@ -173,7 +180,6 @@ async function update(req, res) {
   }
 }
 
-// Show the form for editing the specified resource.
 async function edit(req, res) {}
 
 async function destroy(req, res) {
@@ -184,7 +190,6 @@ async function destroy(req, res) {
 module.exports = {
   index,
   show,
-  create,
   store,
   edit,
   update,
