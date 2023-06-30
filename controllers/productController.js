@@ -80,10 +80,6 @@ async function store(req, res) {
   }
 }
 
-// Show the form for editing the specified resource.
-async function edit(req, res) {}
-
-// Update the specified resource in storage.
 async function update(req, res) {
   try {
     const form = formidable({
@@ -163,7 +159,6 @@ module.exports = {
   show,
   create,
   store,
-  edit,
   update,
   destroy,
   destroyImg,
