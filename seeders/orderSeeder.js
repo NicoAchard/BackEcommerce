@@ -27,7 +27,7 @@ module.exports = async () => {
 
       const order = await Order.create({
         createdAt: faker.date.recent(),
-        id: i,
+
         products: orderProducts,
         status: "payment pending",
         updatedAt: faker.date.recent(),
