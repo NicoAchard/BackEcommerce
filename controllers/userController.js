@@ -28,7 +28,6 @@ async function store(req, res) {
   try {
     const form = formidable({
       multiples: true,
-      uploadDir: __dirname + "/../public/img",
       keepExtensions: true,
     });
 
@@ -42,9 +41,23 @@ async function store(req, res) {
         // return res.status(500).json({ error: "Failed to process form data." });
         return res.json({ response: "Something went wrong. Please try again later", status: 400 });
       }
-      const avatar = files.avatar
-        ? files.avatar.newFilename
-        : "http://localhost:3000/img/defaultProfile.jpg";
+      let avatar = "defaultProfile.jpg";
+
+      if (files.avatar) {
+        const ext = path.extname(files.avatar.filepath);
+        const newFileName = `image_${Date.now()}${ext}`;
+
+        const { data, err } = await supabase.storage
+          .from("img")
+          .upload(newFileName, fs.createReadStream(files.avatar.filepath), {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: files.avatar.mimetype,
+            duplex: "half",
+          });
+
+        avatar = newFileName;
+      }
 
       let { firstname, lastname, email, password, address, phone_number } = fields;
 

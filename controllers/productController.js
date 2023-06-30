@@ -32,7 +32,6 @@ async function store(req, res) {
   try {
     const form = formidable({
       multiples: true,
-      uploadDir: __dirname + "/../public/img",
       keepExtensions: true,
     });
 
@@ -42,11 +41,34 @@ async function store(req, res) {
       let photosDefault = [];
 
       if (Array.isArray(files.photos)) {
-        files.photos.forEach((file) => {
-          photosDefault.push({ url: file.newFilename });
-        });
+        for (const file of files.photos) {
+          const ext = path.extname(file.filepath);
+          const newFileName = `image_${Date.now()}${ext}`;
+
+          const { data, err } = await supabase.storage
+            .from("img")
+            .upload(newFileName, fs.createReadStream(file.filepath), {
+              cacheControl: "3600",
+              upsert: false,
+              contentType: file.mimetype,
+              duplex: "half",
+            });
+          photosDefault.push({ url: newFileName });
+        }
       } else if (files.photos) {
-        photosDefault.push({ url: files.photos.newFilename });
+        const ext = path.extname(files.photos.filepath);
+        const newFileName = `image_${Date.now()}${ext}`;
+
+        const { data, err } = await supabase.storage
+          .from("img")
+          .upload(newFileName, fs.createReadStream(files.photos.filepath), {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: files.photos.mimetype,
+            duplex: "half",
+          });
+
+        photosDefault.push({ url: newFileName });
       } else {
         photosDefault.push({ url: "undefined_board.jpg" }, { url: "undefined_board_2.jpg" });
       }
