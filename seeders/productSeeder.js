@@ -58,7 +58,28 @@ module.exports = async () => {
       photos: [{ url: "CRUISERGLOBESURFGLASS.jpg" }, { url: "CRUISERGLOBESURFGLASS_2.jpg" }],
       categoryId: 2,
     },
-
+    {
+      name: "CRUISER BLANK",
+      description:
+        "Experience pure simplicity with the Cruiser Blank. This minimalist cruiser board provides a smooth and enjoyable ride without any distractions. Whether you're commuting to work or cruising around town, the Cruiser Blank is the perfect companion for your everyday adventures.",
+      slug: "CRUISER-BLANK",
+      highlight: false,
+      stock: 15,
+      price: 299.99,
+      photos: [{ url: "cruiserBlank.jpg" }, { url: "CRUISERGLOBEBLAZER_2.jpg" }],
+      categoryId: 2,
+    },
+    {
+      name: "CRUISER MONDIAL",
+      description:
+        "Explore the world with the Cruiser Mondial. This versatile cruiser board is designed for globetrotters and adventure seekers. Whether you're cruising through city streets or exploring new landscapes, the Cruiser Mondial provides a smooth and comfortable ride wherever your journey takes you.",
+      slug: "CRUISER-MONDIAL",
+      highlight: false,
+      stock: 15,
+      price: 299.99,
+      photos: [{ url: "CRUISERMONDIAL.jpg" }, { url: "CRUISERGLOBEBLAZER_2.jpg" }],
+      categoryId: 2,
+    },
     {
       name: "LONGBOARD GLOBE ARCADIA",
       description:
@@ -81,6 +102,62 @@ module.exports = async () => {
       photos: [{ url: "LONGBOARDGLOBEBYRONBAY.jpg" }, { url: "LONGBOARDGLOBEBYRONBAY_2.jpg" }],
       categoryId: 3,
     },
+    {
+      name: "LONGBOARD DINO",
+      description:
+        "Experience the thrill of riding the Longboard Dino. This board is designed for speed and maneuverability, making it perfect for carving up the streets or bombing hills.",
+      slug: "LONGBOARD-DINO",
+      highlight: true,
+      stock: 8,
+      price: 139.99,
+      photos: [{ url: "DinoLongboard.jpg" }, { url: "lijaopcion1.jpg" }],
+      categoryId: 3,
+    },
+    {
+      name: "LONGBOARD KIDS FUN",
+      description:
+        "Introduce your little ones to the joy of skateboarding with the Longboard Kids Fun. This board is specially designed for young riders, offering a stable and safe learning experience.",
+      slug: "LONGBOARD-KIDS-FUN",
+      highlight: false,
+      stock: 12,
+      price: 129.99,
+      photos: [{ url: "Longboard-KidsFun.jpg" }, { url: "lijaopcion2.jpg" }],
+      categoryId: 3,
+    },
+    {
+      name: "LONGBOARD NINJA TURTLE",
+      description:
+        "Cowabunga! Join the Ninja Turtles on the Longboard Ninja Turtle. This board features a radical design inspired by the iconic heroes in a half shell, perfect for fans of all ages.",
+      slug: "LONGBOARD-NINJA-TURTLE",
+      highlight: false,
+      stock: 12,
+      price: 129.99,
+      photos: [{ url: "Longboard-ninja-turtle.jpg" }, { url: "lijaOPcion3.jpg" }],
+      categoryId: 3,
+    },
+    {
+      name: "LONGBOARD OLD STYLE",
+      description:
+        "Get a taste of the past with the Longboard Old Style. This board features a classic design that pays homage to the golden age of skateboarding, delivering a smooth and stylish ride.",
+      slug: "LONGBOARD-OLD-STYLE",
+      highlight: false,
+      stock: 12,
+      price: 149.99,
+      photos: [{ url: "Longboard-old-style.jpg" }, { url: "lijaOpcion4.jpg" }],
+      categoryId: 3,
+    },
+    {
+      name: "LONGBOARD PICASSO",
+      description:
+        "Embrace your artistic side with the Longboard Picasso. This board showcases a vibrant and eye-catching design inspired by the works of the legendary artist, adding a touch of creativity to your rides.",
+      slug: "LONGBOARD-PICASSO",
+      highlight: false,
+      stock: 12,
+      price: 149.99,
+      photos: [{ url: "Longboard-Picasso.jpg" }, { url: "lijaOpcion4.jpg" }],
+      categoryId: 3,
+    },
+
     {
       name: "LONGBOARD GLOBE THE ALL TIME",
       description:
