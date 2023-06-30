@@ -14,7 +14,7 @@ async function index(req, res) {
 
 async function show(req, res) {
   const { id } = req.params;
-  console.log(id);
+
   const user = await User.findByPk(id);
   if (user) {
     return res.json({ response: "User found", status: 200, user });
@@ -174,7 +174,7 @@ async function update(req, res) {
       user.password = password ? password : user.password;
       user.address = address;
       user.phone_number = phone_number;
-      console.log(user.password);
+
       await user.save();
 
       return res.json({ response: "User updated successfully", status: 200, user });
@@ -196,7 +196,7 @@ async function confirmPassword(req, res) {
   try {
     const user = await User.findByPk(req.auth.id);
     const isMatch = await user.comparePassword(req.body.password);
-    console.log(isMatch);
+
     if (!isMatch) {
       return res.json({
         message: "Passwords do not match",
