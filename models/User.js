@@ -47,8 +47,10 @@ class User extends Model {
       user.password = hashedPassword;
     });
     User.beforeUpdate(async (user) => {
-      const hashedPassword = await bcrypt.hash(user.password, 10);
-      user.password = hashedPassword;
+      if (user.changed("password")) {
+        const hashedPassword = await bcrypt.hash(user.password, 10);
+        user.password = hashedPassword;
+      }
     });
     return User;
   }

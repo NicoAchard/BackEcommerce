@@ -23,7 +23,6 @@ async function show(req, res) {
   }
 }
 
-// Store a newly created resource in storage.
 async function store(req, res) {
   try {
     const form = formidable({
@@ -38,14 +37,13 @@ async function store(req, res) {
       };
       if (error) {
         console.error(error);
-        // return res.status(500).json({ error: "Failed to process form data." });
         return res.json({ response: "Something went wrong. Please try again later", status: 400 });
       }
       let avatar = "defaultProfile.jpg";
 
       if (files.avatar) {
         const ext = path.extname(files.avatar.filepath);
-        const newFileName = `image_${Date.now()}${ext}`;
+        const newFileName = `profile_${Date.now()}${ext}`;
 
         const { data, err } = await supabase.storage
           .from("img")
@@ -61,25 +59,26 @@ async function store(req, res) {
 
       let { firstname, lastname, email, password, address, phone_number } = fields;
 
-      firstname = firstname === "null" ? null : firstname;
-      lastname = lastname === "null" ? null : lastname;
-      email = email === "null" ? null : email;
-      password = password === "null" ? null : password;
-      address = address === "null" ? null : address;
-      phone_number = phone_number === "null" ? null : phone_number;
+      firstname = firstname ?? null;
+      lastname = lastname ?? null;
+      email = email ?? null;
+      password = password ?? null;
+      address = address ?? null;
+      phone_number = phone_number ?? null;
 
       //Check if the user has missed an important field
       if (
-        !firstname ||
-        !lastname ||
-        !email ||
+        !firstname.trim() ||
+        !lastname.trim() ||
+        !email.trim() ||
         !validateEmail(email) ||
-        !password ||
-        !address ||
-        !phone_number
+        !password.trim() ||
+        !address.trim() ||
+        !phone_number.trim()
       ) {
         return res.json({ response: "Please enter the requested information.", status: 401 });
       }
+
       const existingUserEmail = await User.findOne({
         where: { email: email },
       });
@@ -134,14 +133,21 @@ async function update(req, res) {
 
       let { firstname, lastname, email, password, address, phone_number } = fields;
 
-      firstname = firstname === "null" ? null : firstname;
-      lastname = lastname === "null" ? null : lastname;
-      email = email === "null" ? null : email;
-      password = password === "null" ? null : password;
-      address = address === "null" ? null : address;
-      phone_number = phone_number === "null" ? null : phone_number;
+      firstname = firstname ?? null;
+      lastname = lastname ?? null;
+      email = email ?? null;
+      password = password ?? null;
+      address = address ?? null;
+      phone_number = phone_number ?? null;
 
-      if (!firstname || !lastname || !email || !validateEmail(email) || !address || !phone_number) {
+      if (
+        !firstname.trim() ||
+        !lastname.trim() ||
+        !email.trim() ||
+        !validateEmail(email) ||
+        !address.trim() ||
+        !phone_number.trim()
+      ) {
         return res.json({ response: "Please enter the requested information.", status: 401 });
       }
 
@@ -167,13 +173,15 @@ async function update(req, res) {
         const avatar = newFileName;
         user.avatar = avatar;
       }
-
       user.firstname = firstname;
       user.lastname = lastname;
       user.email = email;
-      user.password = password ? password : user.password;
       user.address = address;
       user.phone_number = phone_number;
+
+      if (password.trim()) {
+        user.password = password;
+      }
 
       await user.save();
 
