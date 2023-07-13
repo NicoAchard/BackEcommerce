@@ -111,9 +111,10 @@ async function store(req, res) {
       });
       const token = jwt.sign({ id: newUser.id }, process.env.TOKEN_SECRET);
       await newUser.save();
+      const returnedUser = await User.findByPk(newUser.id, { include: "role" });
       return res.json({
         token,
-        data: newUser,
+        data: returnedUser,
         response: "The user was created successfully",
         status: 200,
       });
