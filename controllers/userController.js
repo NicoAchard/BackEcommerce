@@ -1,6 +1,6 @@
 const supabase = require("../config/configSupabase");
 const { User } = require("../models");
-
+const { Role } = require("../models");
 const formidable = require("formidable");
 const jwt = require("jsonwebtoken");
 const path = require("path");
@@ -57,7 +57,7 @@ async function store(req, res) {
         avatar = newFileName;
       }
 
-      let { firstname, lastname, email, password, address, phone_number } = fields;
+      let { firstname, lastname, email, password, address, phone_number, roleId } = fields;
 
       firstname = firstname ?? null;
       lastname = lastname ?? null;
@@ -91,6 +91,14 @@ async function store(req, res) {
           status: 402,
         });
       }
+
+      const rols = await Role.findAll();
+      const existRole = rols.some((role) => role.dataValues.id === Number(roleId));
+
+      if (!existRole) {
+        return res.json({ response: "The role sent is not valid", status: 400 });
+      }
+
       const newUser = new User({
         firstname,
         lastname,
@@ -98,7 +106,7 @@ async function store(req, res) {
         password,
         address,
         phone_number,
-        roleId: 100,
+        roleId,
         avatar,
       });
       const token = jwt.sign({ id: newUser.id }, process.env.TOKEN_SECRET);
