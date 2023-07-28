@@ -25,6 +25,9 @@ async function show(req, res) {
   }
 }
 
+// Show the form for creating a new resource
+async function create(req, res) {}
+
 async function store(req, res) {
   try {
     const form = formidable({
@@ -33,6 +36,8 @@ async function store(req, res) {
     });
 
     form.parse(req, async (error, fields, files) => {
+      const { name, description, stock, price, categoryId, highlight } = fields;
+
       let photosDefault = [];
 
       if (Array.isArray(files.photos)) {
@@ -68,32 +73,13 @@ async function store(req, res) {
         photosDefault.push({ url: "undefined_board.jpg" }, { url: "undefined_board_2.jpg" });
       }
 
-      let { name, description, stock, price, categoryId, highlight } = fields;
-
-      name = name ?? null;
-      description = description ?? null;
-      stock = stock ?? null;
-      price = price ?? null;
-      categoryId = categoryId ?? null;
-
-      //Check if the user has missed an important field
-      if (
-        !name.trim() ||
-        !description.trim() ||
-        !stock.trim() ||
-        !price.trim() ||
-        !categoryId.trim()
-      ) {
-        return res.json({ response: "Please enter the requested information.", status: 401 });
-      }
-
       const products = await Product.findAll();
 
       if (products.find((product) => product.slug === slugify(name))) {
         return res.json({
           response:
             "There is already a product with that name in the System. Please change the name of the product",
-          status: 402,
+          status: 401,
         });
       } else {
         const product = await Product.create({
@@ -112,7 +98,7 @@ async function store(req, res) {
     });
   } catch (error) {
     console.log(error);
-    return res.json({ response: "An error occurred while creating the product", status: 400 });
+    return res.json({ response: "An error occurred while creating the product", status: 500 });
   }
 }
 
@@ -124,6 +110,7 @@ async function update(req, res) {
     });
 
     form.parse(req, async (error, fields, files) => {
+      const { name, description, stock, price, categoryId, highlight } = fields;
       const id = req.params.id;
 
       const product = await Product.findByPk(id);
@@ -152,23 +139,6 @@ async function update(req, res) {
 
         photos.push({ url: newFileName });
       }
-      let { name, description, stock, price, categoryId, highlight } = fields;
-      name = name ?? null;
-      description = description ?? null;
-      stock = stock ?? null;
-      price = price ?? null;
-      categoryId = categoryId ?? null;
-
-      //Check if the user has missed an important field
-      if (
-        !name.trim() ||
-        !description.trim() ||
-        !stock.trim() ||
-        !price.trim() ||
-        !categoryId.trim()
-      ) {
-        return res.json({ response: "Please enter the requested information.", status: 401 });
-      }
 
       const updatedProduct = await product.update({
         name,
@@ -188,7 +158,7 @@ async function update(req, res) {
     });
   } catch (error) {
     console.log(error);
-    return res.json({ response: "An error occurred while updating the product", status: 400 });
+    return res.json({ response: "An error occurred while updating the product", status: 500 });
   }
 }
 
@@ -209,6 +179,7 @@ async function destroy(req, res) {
 module.exports = {
   index,
   show,
+  create,
   store,
   update,
   destroy,

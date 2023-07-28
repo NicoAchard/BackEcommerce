@@ -4,31 +4,22 @@ const { faker } = require("@faker-js/faker");
 module.exports = async () => {
   const users = [];
   const Avatars = [
-    "seeder_man_1.jpg",
-    "seeder_man_10.jpg",
-    "seeder_man_11.jpg",
-    "seeder_man_12.jpg",
-    "seeder_man_2.jpg",
-    "seeder_man_3.jpg",
-    "seeder_man_4.jpg",
-    "seeder_man_5.jpg",
-    "seeder_man_6.jpg",
-    "seeder_man_7.jpg",
-    "seeder_man_8.jpg",
-    "seeder_man_9.jpg",
-    "seeder_woman_1.jpg",
-    "seeder_woman_10.jpg",
-    "seeder_woman_11.jpg",
-    "seeder_woman_12.jpg",
-    "seeder_woman_13.jpg",
-    "seeder_woman_2.jpg",
-    "seeder_woman_3.jpg",
-    "seeder_woman_4.jpg",
-    "seeder_woman_5.jpg",
-    "seeder_woman_6.jpg",
-    "seeder_woman_7.jpg",
-    "seeder_woman_8.jpg",
-    "seeder_woman_9.jpg",
+    "image_36OXym-C_1687999352964_raw.jpg",
+    "image_aN61hZl5_1687999261665_raw.jpg",
+    "image_aVPmmM12_1687999181635_raw.jpg",
+    "image_dnSeD6c1_1687999289665_raw.jpg",
+    "image_F2dyrWLb_1687999244491_raw.jpg",
+    "image_f7qL7Exg_1687999320511_raw.jpg",
+    "image_Fe3ZHIHE_1687999318869_raw.jpg",
+    "image_GGZuiQif_1687999286456_raw.jpg",
+    "image_KzruY9j5_1687999242909_raw.jpg",
+    "image_MQA-kdvC_1687999323677_raw.jpg",
+    "image_nyJDxx2k_1687999356222_raw.jpg",
+    "image_QgtUNtCH_1687999246074_raw.jpg",
+    "image_RGuECfBq_1687999291363_raw.jpg",
+    "image_YksqKsbB_1687999288018_raw.jpg",
+    "image_yrHE9Mu2_1687999354567_raw.jpg",
+    "image_YZEEE_Ea_1687999322059_raw.jpg",
   ];
 
   let encryptedPassword = await bcrypt.hash("1234", 8);
@@ -57,7 +48,7 @@ module.exports = async () => {
     phone_number: faker.phone.number("09#-###-###"),
     address: faker.location.streetAddress(),
     roleId: 100,
-    avatar: "seeder_woman_1.jpg",
+    avatar: "image_36OXym-C_1687999352964_raw.jpg",
   });
 
   users.push({
@@ -68,7 +59,7 @@ module.exports = async () => {
     phone_number: faker.phone.number("09#-###-###"),
     address: faker.location.streetAddress(),
     roleId: 200,
-    avatar: "seeder_man_1.jpg",
+    avatar: "image_aN61hZl5_1687999261665_raw.jpg",
   });
   await User.bulkCreate(users);
   console.log("[Database] Se corrió el seeder de User.");

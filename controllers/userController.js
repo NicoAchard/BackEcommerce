@@ -1,6 +1,6 @@
 const supabase = require("../config/configSupabase");
 const { User } = require("../models");
-const { Role } = require("../models");
+
 const formidable = require("formidable");
 const jwt = require("jsonwebtoken");
 const path = require("path");
@@ -23,6 +23,7 @@ async function show(req, res) {
   }
 }
 
+// Store a newly created resource in storage.
 async function store(req, res) {
   try {
     const form = formidable({
@@ -37,13 +38,14 @@ async function store(req, res) {
       };
       if (error) {
         console.error(error);
+        // return res.status(500).json({ error: "Failed to process form data." });
         return res.json({ response: "Something went wrong. Please try again later", status: 400 });
       }
       let avatar = "defaultProfile.jpg";
 
       if (files.avatar) {
         const ext = path.extname(files.avatar.filepath);
-        const newFileName = `profile_${Date.now()}${ext}`;
+        const newFileName = `image_${Date.now()}${ext}`;
 
         const { data, err } = await supabase.storage
           .from("img")
@@ -57,28 +59,27 @@ async function store(req, res) {
         avatar = newFileName;
       }
 
-      let { firstname, lastname, email, password, address, phone_number, roleId } = fields;
+      let { firstname, lastname, email, password, address, phone_number } = fields;
 
-      firstname = firstname ?? null;
-      lastname = lastname ?? null;
-      email = email ?? null;
-      password = password ?? null;
-      address = address ?? null;
-      phone_number = phone_number ?? null;
+      firstname = firstname === "null" ? null : firstname;
+      lastname = lastname === "null" ? null : lastname;
+      email = email === "null" ? null : email;
+      password = password === "null" ? null : password;
+      address = address === "null" ? null : address;
+      phone_number = phone_number === "null" ? null : phone_number;
 
       //Check if the user has missed an important field
       if (
-        !firstname.trim() ||
-        !lastname.trim() ||
-        !email.trim() ||
+        !firstname ||
+        !lastname ||
+        !email ||
         !validateEmail(email) ||
-        !password.trim() ||
-        !address.trim() ||
-        !phone_number.trim()
+        !password ||
+        !address ||
+        !phone_number
       ) {
         return res.json({ response: "Please enter the requested information.", status: 401 });
       }
-
       const existingUserEmail = await User.findOne({
         where: { email: email },
       });
@@ -91,14 +92,6 @@ async function store(req, res) {
           status: 402,
         });
       }
-
-      const rols = await Role.findAll();
-      const existRole = rols.some((role) => role.dataValues.id === Number(roleId));
-
-      if (!existRole) {
-        return res.json({ response: "The role sent is not valid", status: 400 });
-      }
-
       const newUser = new User({
         firstname,
         lastname,
@@ -106,15 +99,14 @@ async function store(req, res) {
         password,
         address,
         phone_number,
-        roleId,
+        roleId: 100,
         avatar,
       });
       const token = jwt.sign({ id: newUser.id }, process.env.TOKEN_SECRET);
       await newUser.save();
-      const returnedUser = await User.findByPk(newUser.id, { include: "role" });
       return res.json({
         token,
-        data: returnedUser,
+        data: newUser,
         response: "The user was created successfully",
         status: 200,
       });
@@ -142,21 +134,14 @@ async function update(req, res) {
 
       let { firstname, lastname, email, password, address, phone_number } = fields;
 
-      firstname = firstname ?? null;
-      lastname = lastname ?? null;
-      email = email ?? null;
-      password = password ?? null;
-      address = address ?? null;
-      phone_number = phone_number ?? null;
+      firstname = firstname === "null" ? null : firstname;
+      lastname = lastname === "null" ? null : lastname;
+      email = email === "null" ? null : email;
+      password = password === "null" ? null : password;
+      address = address === "null" ? null : address;
+      phone_number = phone_number === "null" ? null : phone_number;
 
-      if (
-        !firstname.trim() ||
-        !lastname.trim() ||
-        !email.trim() ||
-        !validateEmail(email) ||
-        !address.trim() ||
-        !phone_number.trim()
-      ) {
+      if (!firstname || !lastname || !email || !validateEmail(email) || !address || !phone_number) {
         return res.json({ response: "Please enter the requested information.", status: 401 });
       }
 
@@ -182,15 +167,13 @@ async function update(req, res) {
         const avatar = newFileName;
         user.avatar = avatar;
       }
+
       user.firstname = firstname;
       user.lastname = lastname;
       user.email = email;
+      user.password = password ? password : user.password;
       user.address = address;
       user.phone_number = phone_number;
-
-      if (password.trim()) {
-        user.password = password;
-      }
 
       await user.save();
 
